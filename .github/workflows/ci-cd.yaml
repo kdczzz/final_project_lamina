@@ -100,7 +100,7 @@ jobs:
           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG }}
         run: |
           mkdir -p ~/.kube
-          echo "$KUBE_CONFIG_DATA" | tr -d '\n\r' | base64 -d > ~/.kube/config
+          printf '%s' "$KUBE_CONFIG_DATA" > ~/.kube/config
           chmod 600 ~/.kube/config
 
       - name: Update image tags in manifests
